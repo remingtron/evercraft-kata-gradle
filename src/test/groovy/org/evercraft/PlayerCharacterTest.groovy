@@ -64,4 +64,23 @@ class PlayerCharacterTest {
         arbitraryCharacter.attack(characterToAttack, 10)
         assert characterToAttack.hitPoints == 4
     }
+
+    @Test
+    public void itDealsDoubleDamageToOtherCharacterIfRollIsCriticalHitTwenty() {
+        arbitraryCharacter.attack(characterToAttack, 20)
+        assert characterToAttack.hitPoints == 3
+    }
+    
+    @Test
+    public void itIsAliveWhenCreated() {
+        assert arbitraryCharacter.isAlive()
+    }
+
+    @Test
+    public void itIsDeadIfHitPointsZeroOrLess() {
+        20.times {
+            arbitraryCharacter.attack(characterToAttack, 11)
+        }
+        assert !characterToAttack.isAlive()
+    }
 }
